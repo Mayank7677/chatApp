@@ -82,7 +82,7 @@ exports.login = async (req, res) => {
     console.log("error in login", error);
     return res.status(500).json({
       success: false,
-      message: "error in login",  
+      message: `error in login ${error}`,
     });
   }
 };
