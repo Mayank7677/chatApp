@@ -17,7 +17,7 @@ const App = () => {
   }, [checkAuth]);
 
   return (
-    <div className='bg-[url("./src/assets/bg-image2.avif")] bg-center'>
+    <div className='bg-[url("/bg-image2.avif")] bg-center'>
       <Routes>
         <Route
           path="/login"

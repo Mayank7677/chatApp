@@ -27,7 +27,11 @@ app.use(cookieParser());
 app.use("/api/user", userRouter);
 app.use("/api/message", messageRouter);
 
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  connectDB();
-});
+if (process.env.NODE_ENV !== "production") {
+  server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+    connectDB();
+  });
+}
+
+module.exports = server;
