@@ -30,7 +30,7 @@ exports.getUsersForSidebar = async (req, res) => {
     console.log("error in getUsersForSIdebar", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in getUsersForSIdebar",
     });
   }
 };
@@ -63,7 +63,7 @@ exports.getMessages = async (req, res) => {
     console.log("error in getMessages", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in getMessages",
     });
   }
 };
@@ -80,7 +80,7 @@ exports.markMessageAsSeen = async (req, res) => {
     console.log("error in markMessageAsSeen", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in markMessageAsSeen",
     });
   }
 };
@@ -118,7 +118,7 @@ exports.sendMessage = async (req, res) => {
     console.log("error in sendMessage", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in sendMessage",
     });
   }
 };

@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
     if (!decode) {
       return res.status(401).json({
         success: false,
-        message: "Unauthorized",
+        message: "Unauthorized User",
       });
     }
 
@@ -27,7 +27,7 @@ module.exports = async (req, res, next) => {
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: "Unauthorized",
+        message: "Unauthorized User",
       });
     }
 
@@ -37,7 +37,7 @@ module.exports = async (req, res, next) => {
     console.log("Error in auth middleware", error);
     return res.status(401).json({
       success: false,
-      message: "Unauthorized",
+      message: "Unauthorized User",
     });
   }
 };

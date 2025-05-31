@@ -44,7 +44,7 @@ exports.signup = async (req, res) => {
     console.log("error in signup", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in signup",
     });
   }
 };
@@ -82,7 +82,7 @@ exports.login = async (req, res) => {
     console.log("error in login", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in login",  
     });
   }
 };
@@ -122,7 +122,7 @@ exports.updateProfile = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in updateProfile",
     });
   }
 };
@@ -138,7 +138,7 @@ exports.logout = async (req, res) => {
     console.log("error in logout", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in logout",
     });
   }
 };
@@ -176,7 +176,7 @@ exports.checkMailAndSendOTP = async (req, res) => {
     console.log("error in checkMailAndSendOTP", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in checkMailAndSendOTP",
     });
   }
 };
@@ -216,7 +216,7 @@ exports.verifyOTP = async (req, res) => {
     console.log("error in verifyOTP", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in verifyOTP",
     });
   }
 };
@@ -250,7 +250,7 @@ exports.forgotPass = async (req, res) => {
     console.log("error in forgotPass", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "error in forgotPass",
     });
   }
 };
