@@ -69,7 +69,6 @@ exports.getMessages = async (req, res) => {
 };
 
 exports.markMessageAsSeen = async (req, res) => {
-  console.log("gwsgww", req.params);
   try {
     const { id } = req.params;
     await messageModel.findByIdAndUpdate(id, { seen: true });

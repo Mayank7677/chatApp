@@ -2,7 +2,6 @@ const nodemailer = require("nodemailer");
 
 const mail = process.env.OTP_MAIL;
 const pass = process.env.OTP_PASS;
-console.log(mail, pass);
 
 // Setup the Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -14,9 +13,6 @@ const transporter = nodemailer.createTransport({
 });
 
 const sentOtpEmail = async (to, otp, name) => {
-    console.log(to, otp, name);
-    console.log("mail", mail, pass);
-    console.log("-------------------------------------------");
 
   try {
     await transporter.sendMail({

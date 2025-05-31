@@ -92,7 +92,6 @@ exports.checkAuth = async (req, res) => {
 };
 
 exports.updateProfile = async (req, res) => {
-  // console.log(req.body)
   try {
     const { fullName, bio, profilePic } = req.body;
 
@@ -121,7 +120,6 @@ exports.updateProfile = async (req, res) => {
       user: updatedUser,
     });
   } catch (error) {
-    // console.log("error in updateProfile", error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -146,8 +144,6 @@ exports.logout = async (req, res) => {
 };
 
 exports.checkMailAndSendOTP = async (req, res) => {
-  console.log("checkMailAndSendOTP", req.body);
-  console.log("------------------------------------------");
 
   try {
     const { email } = req.body;
@@ -170,7 +166,6 @@ exports.checkMailAndSendOTP = async (req, res) => {
     user.otpTimer = Date.now() + 5 * 60 * 1000;
     await user.save();
 
-    console.log("-------------------------------------------");
     await sentOtpEmail(user.email, otp, user.fullName);
 
     return res.status(200).json({
@@ -187,8 +182,6 @@ exports.checkMailAndSendOTP = async (req, res) => {
 };
 
 exports.verifyOTP = async (req, res) => {
-  console.log("verifyOTP", req.body);
-  console.log("------------------------------------------");
   try {
     const { otp, email } = req.body;
 
@@ -201,7 +194,6 @@ exports.verifyOTP = async (req, res) => {
       });
     }
 
-    console.log(user.otp === otp);
     if (Number(user.otp) !== Number(otp)) {
       return res.status(400).json({
         success: false,
@@ -230,8 +222,6 @@ exports.verifyOTP = async (req, res) => {
 };
 
 exports.forgotPass = async (req, res) => {
-  console.log("forgotPass", req.body);
-  console.log("------------------------------------------");
   try {
     const { newPass, email } = req.body;
 

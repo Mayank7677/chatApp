@@ -71,7 +71,6 @@ const useAuthStore = create((set, get) => ({
   },
 
   updateProfile: async (data) => {
-    // console.log(data);
     set({ isUpdatingProfile: true });
     try {
       let res = await axiosInstance.put("/api/user/updateProfile", {
@@ -88,7 +87,6 @@ const useAuthStore = create((set, get) => ({
 
   connectSocket: (userData) => {
     if (!userData || get().socket?.connected) return;
-    console.log("url", url);
 
     const newSocket = io(url, {
       query: {
@@ -101,14 +99,12 @@ const useAuthStore = create((set, get) => ({
 
     newSocket.on("onlineUsers", (users) => {
       set({ onlineUsers: users });
-      // console.log("onlineUsers", users);
     });
   },
 
   checkMailAndSendOTP: async (email) => {
     set({ isSendingOTP: true });
     let { isSendingOTP } = get();
-    console.log(isSendingOTP);
     try {
       let res = await axiosInstance.post("/api/user/sendOtp", {
         email,

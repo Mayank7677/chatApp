@@ -61,8 +61,7 @@ const useChatStore = create((set, get) => ({
     socket.on("newMessage", (message) => {
       const selectedUser = get().selectedUser; // always get latest
 
-      console.log("newMessage", message);
-      console.log("selectedUser", selectedUser);
+      
 
       if (selectedUser && selectedUser._id === message.senderId) {
         message.seen = true;
@@ -71,7 +70,6 @@ const useChatStore = create((set, get) => ({
           messages: [...state.messages, message],
         }));
 
-        console.log("working ----------------------------");
         axiosInstance.put(`/api/message/markAsSeen/${message._id}`);
       } else {
         set((state) => ({
