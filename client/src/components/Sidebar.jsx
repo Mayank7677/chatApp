@@ -7,13 +7,14 @@ import useChatStore from "../store/useChatStore";
 const Sidebar = () => {
   const navigate = useNavigate();
   const { logout, onlineUsers } = useAuthStore();
+  console.log(onlineUsers)
 
   const { users, getUsers, selectedUser, setSelectedUser, unseenMessages } =
     useChatStore();
 
   useEffect(() => {
     getUsers();
-  }, [getUsers , onlineUsers]);
+  }, [getUsers, onlineUsers]);
 
   const [input, setInput] = useState("");
   const filteredUsers = input
@@ -21,6 +22,26 @@ const Sidebar = () => {
         user.fullName.toLowerCase().includes(input.toLowerCase())
       )
     : users;
+
+  // Sort users: online first, then offline
+  const sortedUsers = [
+    // Online users with unseen messages
+    ...filteredUsers.filter(
+      (user) => onlineUsers.includes(user._id) && unseenMessages[user._id] > 0
+    ),
+    // Online users without unseen messages
+    ...filteredUsers.filter(
+      (user) => onlineUsers.includes(user._id) && !unseenMessages[user._id]
+    ),
+    // Offline users with unseen messages
+    ...filteredUsers.filter(
+      (user) => !onlineUsers.includes(user._id) && unseenMessages[user._id] > 0
+    ),
+    // Offline users without unseen messages
+    ...filteredUsers.filter(
+      (user) => !onlineUsers.includes(user._id) && !unseenMessages[user._id]
+    ),
+  ];
 
   return (
     <div
@@ -69,12 +90,48 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="flex flex-col ">
+      {/* <div className="flex flex-col ">
         {filteredUsers.map((user, index) => {
           return (
             <div
               onClick={() => setSelectedUser(user)}
               key={index}
+              className={`relative flex items-center p-2 gap-2 pl-4 rounded cursor-pointer max-sm:text-sm ${
+                selectedUser?._id === user._id && "bg-[#282142]/50"
+              }`}
+            >
+              <img
+                src={user?.profilePic || assets.avatar_icon}
+                className="w-[35px] h-[35px] object-cover aspect-[1/1] rounded-full"
+                alt=""
+              />
+
+              <div className="flex flex-col leading-5">
+                <p>{user.fullName}</p>
+                {onlineUsers.includes(user._id) ? (
+                  <span className="text-green-400 text-xs">Online</span>
+                ) : (
+                  <span className="text-neutral-600 text-xs">Offline</span>
+                )}
+              </div>
+
+              {unseenMessages[user._id] > 0 && (
+                <p className="absolute top-4 right-4 text-xs h-5 w-5 flex justify-center items-center rounded-full bg-violet-500/50">
+                  {unseenMessages[user._id]}
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </div> */}
+
+      {/* ...header and search... */}
+      <div className="flex flex-col ">
+        {sortedUsers.map((user, index) => {
+          return (
+            <div
+              onClick={() => setSelectedUser(user)}
+              key={user._id}
               className={`relative flex items-center p-2 gap-2 pl-4 rounded cursor-pointer max-sm:text-sm ${
                 selectedUser?._id === user._id && "bg-[#282142]/50"
               }`}

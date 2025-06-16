@@ -11,7 +11,7 @@ const useAuthStore = create((set, get) => ({
   onlineUsers: [],
   step: "check",
   isSendingOTP: false,
-  isUpdatingProfile: false,
+  isUpdatingProfile: false, 
 
   checkAuth: async () => {
     try {

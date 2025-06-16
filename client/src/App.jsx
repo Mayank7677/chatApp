@@ -9,14 +9,14 @@ import { Toaster } from "react-hot-toast";
 import useAuthStore from "./store/useAuthStore";
 
 const App = () => {
-  const { authUser, checkAuth } = useAuthStore();
+  const { authUser, checkAuth } = useAuthStore(); 
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
   return (
-    <div className='bg-[url("/bg-image2.avif")] bg-center'>
+    <div className='bg-center bg-contain bg-[url("https://images.unsplash.com/photo-1548678756-aa5ed92c4796?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fHw%3D")] '>
       <Routes>
         <Route
           path="/login"

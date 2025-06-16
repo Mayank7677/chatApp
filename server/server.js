@@ -17,7 +17,6 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://chat-app-ashy-three.vercel.app",
     ],
     credentials: true,
   })

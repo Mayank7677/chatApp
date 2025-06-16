@@ -126,13 +126,15 @@ const ForgetPass = () => {
           </div>
         </section>
 
-        <div className="flex flex-col items-center justify-center gap-2 text-gray-500 bg-white/10 max-lg:hidden">
-          <img src={assets.logo_icon} className="max-w-16" alt="" />
-          <p className="text-lg font-medium text-white">
-            {" "}
-            Chat anytime , anywhere on VibeRoom{" "}
-          </p>
-        </div>
+        {step === "check" && (
+          <div className="flex flex-col items-center justify-center gap-2 text-gray-500 bg-white/10 max-lg:hidden">
+            <img src={assets.logo_icon} className="max-w-16" alt="" />
+            <p className="text-lg font-medium text-white">
+              {" "}
+              Chat anytime , anywhere on VibeRoom{" "}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
