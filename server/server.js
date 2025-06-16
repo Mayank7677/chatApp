@@ -15,7 +15,11 @@ const PORT = process.env.PORT || 5000;
 // middlewares
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://chatapp-d4yb.onrender.com"],
+    origin: [
+      "http://localhost:5173",
+      "https://chatapp-d4yb.onrender.com",
+      "http://localhost:5175",
+    ],
     credentials: true,
   })
 );

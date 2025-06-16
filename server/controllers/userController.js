@@ -71,7 +71,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    generateToken(checkUser._id, res);
+    generateToken(checkUser._id, res , req);
 
     return res.status(200).json({
       success: true,
