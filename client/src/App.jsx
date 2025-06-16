@@ -9,10 +9,11 @@ import { Toaster } from "react-hot-toast";
 import useAuthStore from "./store/useAuthStore";
 
 const App = () => {
-  const { authUser, checkAuth } = useAuthStore(); 
+  const { authUser, checkAuth, connectSocket } = useAuthStore(); 
 
   useEffect(() => {
     checkAuth();
+    connectSocket();
   }, [checkAuth]);
 
   return (

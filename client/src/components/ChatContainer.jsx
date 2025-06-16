@@ -11,7 +11,7 @@ const ChatContainer = () => {
   const [imagePreview, setImagePreview] = useState(null); 
 
   const { onlineUsers, authUser } = useAuthStore();
-
+console.log(onlineUsers);
   const {
     subscribeToMessages,
     unsubscribeFromMessages,
