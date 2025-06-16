@@ -20,18 +20,16 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 app.use(cookieParser());
 
 // routes
 app.use("/api/user", userRouter);
 app.use("/api/message", messageRouter);
 
-if (process.env.NODE_ENV !== "production") {
-  server.listen(PORT, () => {
-    // console.log(`Server is running on port ${PORT}`);
-    connectDB();
-  });
-}
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+  connectDB();
+});
 
 module.exports = server;
