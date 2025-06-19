@@ -3,11 +3,12 @@ import assets, { userDummyData } from "../assets/assets";
 import { useNavigate } from "react-router";
 import useAuthStore from "../store/useAuthStore";
 import useChatStore from "../store/useChatStore";
+import { RxCross1 } from "react-icons/rx";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const { logout, onlineUsers } = useAuthStore();
-  console.log(onlineUsers)
+  console.log(onlineUsers);
 
   const { users, getUsers, selectedUser, setSelectedUser, unseenMessages } =
     useChatStore();
@@ -43,6 +44,8 @@ const Sidebar = () => {
     ),
   ];
 
+  const [open, setOpen] = useState(false);
+
   return (
     <div
       className={`bg-[#8185B2]/10 h-full p-5  overflow-y-scroll text-white ${
@@ -57,25 +60,34 @@ const Sidebar = () => {
             <h1 className="text-lg font-medium ">VibeRoom</h1>
           </div>
 
-          <div className="relative py-2 group">
-            <img
-              src={assets.menu_icon}
-              className="max-h-5 cursor-pointer"
-              alt=""
-            />
-
-            <div className="absolute top-full right-0 z-20 w-32 p-5 rounded-md bg-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block">
-              <p
-                onClick={() => navigate("/profile")}
-                className="cursor-pointer text-sm"
-              >
-                Edit Profile
-              </p>
-              <hr className="my-2 border-t border-gray-500" />
-              <p onClick={logout} className="cursor-pointer text-sm">
-                Logout
-              </p>
-            </div>
+          <div className="relative py-2 ">
+            <span onClick={() => setOpen(!open)}>
+              {open ? (
+                <span className="text-xl cursor-pointer">
+                  <RxCross1 />
+                </span>
+              ) : (
+                <img
+                  src={assets.menu_icon}
+                  className="max-h-5 cursor-pointer"
+                  alt=""
+                />
+              )}
+            </span>
+            {open && (
+              <div className="absolute top-full right-0 z-20 w-32 p-5 rounded-md bg-[#282142] border border-gray-600 text-gray-100  ">
+                <p
+                  onClick={() => navigate("/profile")}
+                  className="cursor-pointer text-sm"
+                >
+                  Edit Profile
+                </p>
+                <hr className="my-2 border-t border-gray-500" />
+                <p onClick={logout} className="cursor-pointer text-sm">
+                  Logout
+                </p>
+              </div>
+            )}
           </div>
         </div>
 

@@ -9,8 +9,8 @@ exports.generateToken = (id, res , req) => {
 
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: !isLocalhost, // false on localhost, true on real domain
-    sameSite: isLocalhost ? "Lax" : "None",
+    secure: true, 
+    sameSite: "none",
     maxAge: 24 * 60 * 60 * 1000,
   });
 

@@ -41,18 +41,17 @@ console.log(onlineUsers);
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    if (input.trim() === "") return;
+    if (!input.trim() && !imagePreview) return;
 
-    if (imagePreview) {
-      await sendMessage({ image: imagePreview, text: input.trim() });
-      setImagePreview(null);
-      setInput("");
-      return;
-    }
+    await sendMessage({
+      text: input.trim() || "",
+      image: imagePreview || "",
+    });
 
-    await sendMessage({ text: input.trim() });
     setInput("");
+    setImagePreview(null);
   };
+  
 
   // const handleSendImage = async (e) => {
   //   const file = e.target.files[0];
@@ -70,10 +69,8 @@ console.log(onlineUsers);
 
   //   reader.readAsDataURL(file);
   // };
-  const handleSelectImage = (e) => {
+  const handleSelectImage = async (e) => {
     const file = e.target.files[0];
-    console.log(file)
-
     if (!file || !file.type.startsWith("image/")) {
       toast.error("Please select an image file.");
       return;
@@ -81,12 +78,14 @@ console.log(onlineUsers);
 
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImagePreview(reader.result); // <-- Just set preview, don't send yet
+      setImagePreview(reader.result); // ✅ Only set the preview
       e.target.value = null;
     };
 
     reader.readAsDataURL(file);
   };
+  
+  
 
   const handleRemoveImage = () => {
     setImagePreview(null);

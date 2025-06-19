@@ -33,9 +33,9 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="border w-full h-screen sm:px-[15%] sm:py-[5%] ">
+    <div className="sm:border w-full h-screen sm:px-[15%] sm:py-[5%] ">
       <div
-        className={`backdrop-blur-xl border-2 border-neutral-500 bg-[#8185B2]/10 rounded-2xl overflow-hidden h-[100%] grid grid-cols-1 relative text-white `}
+        className={`backdrop-blur-xl sm:border-2 border-neutral-500 bg-[#8185B2]/10 sm:rounded-2xl overflow-hidden h-[100%] grid grid-cols-1 relative text-white `}
       >
         <section className="flex items-center justify-center  ">
           <div class="flex  gap-10   rounded-4xl py-10   items-center">
